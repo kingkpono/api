@@ -28,48 +28,48 @@ import com.api.api.repository.AccountRepository;
 public class AccountController {
  
     @Autowired
-    private AccountRepository AccountRepository;
+    private AccountRepository accountRepository;
 
-    @GetMapping("/Accounts")
+    @GetMapping("/accounts")
     public List<Account> getAllAccounts() {
-        return AccountRepository.findAll();
+        return accountRepository.findAll();
     }
 
-    @GetMapping("/Accounts/{id}")
+    @GetMapping("/accounts/{id}")
     public ResponseEntity<Account> getAccountById(
-    @PathVariable(value = "id") Long AccountId) throws ResourceNotFoundException {
-        Account Account = AccountRepository.findById(AccountId)
-        .orElseThrow(() -> new ResourceNotFoundException("Account not found on :: "+ AccountId));
-        return ResponseEntity.ok().body(Account);
+    @PathVariable(value = "id") Long accountId) throws ResourceNotFoundException {
+        Account account = accountRepository.findById(accountId)
+        .orElseThrow(() -> new ResourceNotFoundException("Account not found on :: "+accountId));
+        return ResponseEntity.ok().body(account);
     }
 
-    @PostMapping("/Accounts")
-    public Account createAccount(@Valid @RequestBody Account Account) {
-        return AccountRepository.save(Account);
+    @PostMapping("/accounts")
+    public Account createAccount(@Valid @RequestBody Account account) {
+        return accountRepository.save(account);
     }
 
-    @PutMapping("/Accounts/{id}")
+    @PutMapping("/accounts/{id}")
     public ResponseEntity<Account> updateAccount(
-    @PathVariable(value = "id") Long AccountId,
-    @Valid @RequestBody Account AccountDetails) throws ResourceNotFoundException {
-         Account account = AccountRepository.findById(AccountId)
-          .orElseThrow(() -> new ResourceNotFoundException("Account not found on :: "+ AccountId));
+    @PathVariable(value = "id") Long accountId,
+    @Valid @RequestBody Account accountDetails) throws ResourceNotFoundException {
+         Account account = accountRepository.findById(accountId)
+          .orElseThrow(() -> new ResourceNotFoundException("Account not found on :: "+accountId));
   
-         account.setAccountNumber(AccountDetails.getAccountNumber());
-         account.setBalance(AccountDetails.getBalance());
-         account.setCustomerId(AccountDetails.getCustomerId());
+         account.setAccountNumber(accountDetails.getAccountNumber());
+         account.setBalance(accountDetails.getBalance());
+         account.setCustomerId(accountDetails.getCustomerId());
         account.setUpdatedAt(new Date());
-        final Account updatedAccount = AccountRepository.save(account);
+        final Account updatedAccount = accountRepository.save(account);
         return ResponseEntity.ok(updatedAccount);
    }
 
-   @DeleteMapping("/Account/{id}")
+   @DeleteMapping("/account/{id}")
    public Map<String, Boolean> deleteAccount(
-       @PathVariable(value = "id") Long AccountId) throws Exception {
-       Account Account = AccountRepository.findById(AccountId)
-          .orElseThrow(() -> new ResourceNotFoundException("Account not found on :: "+ AccountId));
+       @PathVariable(value = "id") Long accountId) throws Exception {
+       Account account = accountRepository.findById(accountId)
+          .orElseThrow(() -> new ResourceNotFoundException("Account not found on :: "+accountId));
 
-       AccountRepository.delete(Account);
+       accountRepository.delete(account);
        Map<String, Boolean> response = new HashMap<>();
        response.put("deleted", Boolean.TRUE);
        return response;
