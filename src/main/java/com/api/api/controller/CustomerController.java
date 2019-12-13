@@ -57,6 +57,7 @@ public class CustomerController {
         customer.setAddress(customerDetails.getAddress());
         customer.setLastName(customerDetails.getLastName());
         customer.setFirstName(customerDetails.getFirstName());
+        customer.setPhone(customerDetails.getPhone());
         customer.setUpdatedAt(new Date());
         final Customer updatedCustomer = customerRepository.save(customer);
         return ResponseEntity.ok(updatedCustomer);

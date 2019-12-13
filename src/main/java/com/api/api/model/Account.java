@@ -17,15 +17,14 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
-@Table(name = "customer")
+@Table(name = "account")
 @EntityListeners(AuditingEntityListener.class)
-public class Customer {
+public class Account {
 
     private long id;
-    private String firstName;
-    private String lastName;
-    private String address;
-    private String phone;
+    private String accountNumber;
+    private double balance;
+    private long customerId;
     private Date createdAt;
     private Date updatedAt;
    
@@ -39,38 +38,33 @@ public class Customer {
         this.id = id;
     }
  
-    @Column(name = "first_name", nullable = false)
-    public String getFirstName() {
-        return this.firstName;
+    @Column(name = "account_number", nullable = false)
+    public String getAccountNumber() {
+        return this.accountNumber;
     }
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
- 
-    @Column(name = "last_name", nullable = false)
-    public String getLastName() {
-        return this.lastName;
-    }
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
     }
  
-    @Column(name = "address", nullable = false)
-    public String getAddress() {
-        return this.address;
+    @Column(name = "customer_id", nullable = false)
+    public long getCustomerId() {
+        return this.customerId;
     }
-    public void setAddress(String address) {
-        this.address = address;
+    public void setCustomerId(long customerId) {
+        this.customerId = customerId;
+    }
+ 
+    @Column(name = "balance", nullable = false)
+    public double getBalance() {
+        return this.balance;
     }
     
-    @Column(name = "phone", nullable = false)
-    public String getPhone() {
-        return phone;
-    }
-    public void setPhone(String phone) {
-        this.phone = phone;
+    
+    public void setBalance(double balance) {
+        this.balance = balance;
     }
  
+   
     @Column(name = "created_at", nullable = false)
     @CreatedDate
     public Date getCreatedAt() {
