@@ -55,15 +55,15 @@ public class AccountController {
          Account account = accountRepository.findById(accountId)
           .orElseThrow(() -> new ResourceNotFoundException("Account not found on :: "+accountId));
   
-         account.setAccountNumber(accountDetails.getAccountNumber());
-         account.setBalance(accountDetails.getBalance());
-         account.setCustomerId(accountDetails.getCustomerId());
+        account.setAccountNumber(accountDetails.getAccountNumber());
+        account.setBalance(accountDetails.getBalance());
+        account.setCustomerId(accountDetails.getCustomerId());
         account.setUpdatedAt(new Date());
         final Account updatedAccount = accountRepository.save(account);
         return ResponseEntity.ok(updatedAccount);
    }
 
-   @DeleteMapping("/account/{id}")
+   @DeleteMapping("/accounts/{id}")
    public Map<String, Boolean> deleteAccount(
        @PathVariable(value = "id") Long accountId) throws Exception {
        Account account = accountRepository.findById(accountId)

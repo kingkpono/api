@@ -43,11 +43,11 @@ public class CustomerController {
     }
 
     @PostMapping("/customers")
-    public Customer createCustomer(@Valid @RequestBody Customer customer) {
+    public Customer createCustomer(@RequestBody Customer customer) {
         return customerRepository.save(customer);
     }
 
-    @PutMapping("/customers/{id}")
+    @PutMapping("/customers{id}")
     public ResponseEntity<Customer> updateCustomer(
     @PathVariable(value = "id") Long customerId,
     @Valid @RequestBody Customer customerDetails) throws ResourceNotFoundException {
@@ -63,7 +63,7 @@ public class CustomerController {
         return ResponseEntity.ok(updatedCustomer);
    }
 
-   @DeleteMapping("/customer/{id}")
+   @DeleteMapping("/customers/{id}")
    public Map<String, Boolean> deleteCustomer(
        @PathVariable(value = "id") Long customerId) throws Exception {
        Customer customer = customerRepository.findById(customerId)

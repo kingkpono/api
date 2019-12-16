@@ -30,12 +30,12 @@ public class TransactionController {
     @Autowired
     private TransactionRepository TransactionRepository;
 
-    @GetMapping("/Transactions")
+    @GetMapping("/transactions")
     public List<Transaction> getAllTransactions() {
         return TransactionRepository.findAll();
     }
 
-    @GetMapping("/Transactions/{id}")
+    @GetMapping("/transactions/{id}")
     public ResponseEntity<Transaction> getTransactionById(
     @PathVariable(value = "id") Long TransactionId) throws ResourceNotFoundException {
         Transaction Transaction = TransactionRepository.findById(TransactionId)
@@ -43,12 +43,12 @@ public class TransactionController {
         return ResponseEntity.ok().body(Transaction);
     }
 
-    @PostMapping("/Transactions")
+    @PostMapping("/transactions")
     public Transaction createTransaction(@Valid @RequestBody Transaction Transaction) {
         return TransactionRepository.save(Transaction);
     }
 
-    @PutMapping("/Transactions/{id}")
+    @PutMapping("/transactions/{id}")
     public ResponseEntity<Transaction> updateTransaction(
     @PathVariable(value = "id") Long TransactionId,
     @Valid @RequestBody Transaction TransactionDetails) throws ResourceNotFoundException {
