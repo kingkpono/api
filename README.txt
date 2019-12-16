@@ -1,1 +1,2 @@
-Documentation will be updated tonight
+Swagger Url: https://rmb-api.herokuapp.com/swagger-ui.html
+
